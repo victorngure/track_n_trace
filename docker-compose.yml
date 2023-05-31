@@ -1,0 +1,23 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    volumes:
+      - .:/var/www/html/track_n_trace
+    depends_on:
+      - db
+  db:
+    image: mysql
+    environment:
+      MYSQL_DATABASE: track_n_trace
+      MYSQL_USER: vic
+      MYSQL_PASSWORD: Mungai2021
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - db_data:/var/lib/mysql
+volumes:
+  db_data:
